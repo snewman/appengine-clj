@@ -1,0 +1,8 @@
+#!/bin/bash
+ANT_HOME=$PWD/tools/apache-ant-1.8.0
+$PWD/tools/apache-ant-1.8.0/bin/ant $@
+if [ "$?" -ne 0 ]; then
+    exit 1
+else
+    exit 0
+fi
