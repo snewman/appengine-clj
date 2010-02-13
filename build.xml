@@ -33,6 +33,7 @@
       <arg value="appengine-clj.datastore" />
       <arg value="appengine-clj.test-utils" />
     </java>
+      
   </target>
   
   <target name="repl">
@@ -57,8 +58,8 @@
 	      (apply run-tests '[appengine-clj.datastore-test appengine-clj.users-test])" />
     </java>
   </target>
-  
-  <target name="jar" depends="compile,test">
+
+  <target name="jar" depends="compile">
     <jar jarfile="${jar.file}" basedir="${classes.dir}" />
   </target>
   
