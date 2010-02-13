@@ -1,20 +1,18 @@
 <project name="appengine-clj" basedir="." default="test">
   
   <property environment="env" />
-  <property name="classes.dir" value="classes" />
-  <property name="lib.dir" value="lib" />
-  <property name="src.dir" value="src" />
-  <property name="test.dir" value="test" />
+  <property name="classes.dir" location="classes" />
+  <property name="lib.dir" location="lib" />
+  <property name="src.dir" location="src" />
+  <property name="test.dir" location="test" />
   <property name="jar.file" value="appengine-clj.jar" />
   
   <path id="project.classpath">
-    <pathelement path="${classes.dir}" />
+    <path location="${classes.dir}" />
+    <path location="${src.dir}" />
     <fileset dir="${lib.dir}">
       <include name="**/*.jar" />
     </fileset>
-    <!-- <fileset dir="${sdk.dir}/lib">
-          <include name="**/*.jar" />
-        </fileset> -->
   </path>
   
   <target name="clean">
@@ -27,8 +25,9 @@
   </target>
   
   <target name="compile" depends="clean,init">
+    <javac classpathref="project.classpath" failonerror="true" destdir="${classes.dir}" srcdir="${src.dir}" />
+
     <java classname="clojure.lang.Compile" classpathref="project.classpath" failonerror="true">
-      <classpath path="${src.dir}" />
       <sysproperty key="clojure.compile.path" value="${classes.dir}" />
       <arg value="appengine-clj.users" />
       <arg value="appengine-clj.datastore" />
@@ -44,7 +43,11 @@
   </target>
   
   <target name="test" depends="compile">
-    <java classname="clojure.main" classpathref="project.classpath" fork="true" failonerror="true">
+    <java classname="clojure.main" fork="true" failonerror="true">
+        <classpath>
+            <path refid="project.classpath" />
+            <path path="${test.dir}" />
+        </classpath>
       <classpath path="${test.dir}" />
       <arg value="-e" />
       <arg value="

@@ -9,7 +9,8 @@
              EntityNotFoundException
              Query
              Query$FilterOperator
-             Query$SortDirection)))
+             Query$SortDirection)
+    (support LocalServiceTestHelperFactory)))
 
 
 (dstest entity-to-map-converts-to-persistent-map
