@@ -1,6 +1,19 @@
 h1. appengine-clj
 
-Library aimed at making life on Google AppEngine clean and easy for a Clojure app.
+Library aimed at making life on Google AppEngine clean and easy for a Clojure app. Wirtten by John Hume, forked
+by Sam Newman
+
+h2. Building
+
+Everything needed to build is enclosed. On the terminal, just type:
+
+    ./run
+
+Tests can be run using:
+
+    ./run test
+
+Note that the tests run and pass - but there is currently an issue whereby the task hangs at the end. 
 
 h2. appengine-clj.users
 
@@ -28,6 +41,7 @@ If you're using <code>clojure.contrib.test-is</code>, you can use the <code>dste
 ---
 
 Copyright (c) 2009 John D. Hume.
+Copyright (c) 2010 Sam Newman
 
 Released under an MIT license.
 
